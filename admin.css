@@ -1,0 +1,99 @@
+body {
+    background-color: #f4f7f4;
+}
+
+/* Dashboard cards */
+.dashboard-card {
+    border: none;
+    border-radius: 12px;
+    transition: 0.3s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+}
+
+.dashboard-card h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #198754;
+}
+
+.dashboard-card p {
+    margin: 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Admin page headings */
+.admin-title {
+    color: #198754;
+    font-weight: bold;
+}
+
+/* Tables */
+.table {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table thead {
+    background-color: #198754;
+    color: white;
+}
+
+/* Forms */
+.admin-form-card {
+    border: none;
+    border-radius: 12px;
+}
+
+/* Buttons */
+.btn-admin {
+    background-color: #198754;
+    color: white;
+    border: none;
+}
+
+.btn-admin:hover {
+    background-color: #146c43;
+    color: white;
+}
+
+/* Status badges */
+.status-pending {
+    background-color: #ffc107;
+    color: black;
+}
+
+.status-approved {
+    background-color: #0d6efd;
+}
+
+.status-booked {
+    background-color: #198754;
+}
+
+.status-completed {
+    background-color: #6c757d;
+}
+
+.status-cancelled {
+    background-color: #dc3545;
+}
+
+/* Navbar admin link */
+.admin-link {
+    font-weight: bold;
+}
+
+/* Responsive tables */
+.table-responsive {
+    overflow-x: auto;
+}
+
+/* Footer spacing */
+footer {
+    margin-top: 50px;
+}

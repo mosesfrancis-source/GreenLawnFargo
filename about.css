@@ -1,0 +1,54 @@
+/* About page card styles */
+
+.about-card { 
+	border-radius: .75rem;
+	overflow: hidden;
+}
+
+.about-card-img {
+	display: inline-block;
+	width: 140px;
+	height: 140px;
+	object-fit: cover;
+	border-radius: 50%;
+	box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+	transition: transform .18s ease;
+}
+
+.about-card .col-sm-4 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@media (max-width: 576px) {
+	.about-card-img {
+		width: 100%;
+		height: 180px;
+		border-radius: .5rem;
+	}
+	.about-card .card-body {
+		text-align: center;
+	}
+}
+
+.about-card .card-body h3 {
+	margin-bottom: .25rem;
+}
+
+.about-card .card-body p {
+	margin-bottom: 0;
+}
+
+.about-card .card-body h5 {
+	font-weight: 500;
+}
+
+.about-card + .about-card { 
+	margin-top: 1rem;
+}
+
+/* Small visual spacing for the section */
+.row.mt-5 { 
+	gap: 1rem;
+}
