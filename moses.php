@@ -1,19 +1,29 @@
-<?php
-include "header.php";
-?>
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">Moses Francis</h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary">Backend Developer & Database Administrator</h6>
-    <p class="card-text"> Moses Francis served as the Backend Developer and Database Designer
-    for the Green Lawn Fargo project. His responsibilities included
-    designing the MySQL database in Third Normal Form (3NF),
-    creating SQL scripts, implementing authentication and session
-    management, developing booking and service request functionality,
-    and securing the application using prepared statements and password hashing.
-    He also coordinated the GitHub repository, managed project integration,
-    and connected the frontend with backend database operations using PHP.</p>
-  </div>
-   
+<?php include "header.php"; ?>
+
+<div class="card shadow p-4">
+  <h2 class="text-success mb-3">Moses Francis</h2>
+  <h5 class="text-muted mb-4">Backend Developer, Database Designer, and GitHub Coordinator</h5>
+
+  <p>
+    Moses Francis worked on the backend side of the Green Lawn Fargo web application.
+    His main responsibilities included designing the MySQL database, creating the SQL
+    scripts, and organizing the database into Third Normal Form (3NF) to reduce repeated
+    data and improve consistency.
+  </p>
+
+  <p>
+    He also developed the PHP backend logic for customer registration, login, service
+    requests, estimate calculation, bookings, confirmations, and admin management.
+    Security was part of his responsibility, including prepared statements, password
+    hashing, input validation, and session management.
+  </p>
+
+  <p>
+    Moses also coordinated the GitHub workflow by managing branches, commits, code
+    integration, and project updates between team members.
+  </p>
+
+  <a href="about.php" class="btn btn-success">Back to About</a>
 </div>
+
 <?php include "footer.php"; ?>

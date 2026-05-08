@@ -1,6 +1,9 @@
 <?php
 include "db.php";
-include "header.php";
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 $message = "";
 
@@ -21,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $admin = $result->fetch_assoc();
 
-        if ($password == $admin["PasswordHash"]) {
+        if (password_verify($password, $admin["PasswordHash"])) {
 
             $_SESSION["AdminID"] = $admin["AdminID"];
             $_SESSION["AdminUsername"] = $admin["Username"];
@@ -39,6 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt->close();
 }
+
+include "header.php";
 ?>
 
 <div class="row justify-content-center">

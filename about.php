@@ -5,7 +5,7 @@ include "header.php";
 
     <div class="col-12 mb-4">
         <h2 class="text-success text-center">
-            Project Team
+            GreenLawn Fargo Project Team
         </h2>
     </div>
 
@@ -15,7 +15,7 @@ include "header.php";
         <div class="card-body">
             <h5 class="card-title">Moses Francis</h5>
             <p class="card-text">Backend Developer & Database Administrator.</p>
-            <a href="moses.php" class="btn btn-primary">Learn more</a>
+            <a href="moses.php" class="btn btn-success">View Moses' Role</a>
         </div>
     </div>
 
@@ -24,7 +24,7 @@ include "header.php";
         <div class="card-body">
             <h5 class="card-title">Jesleen Mulbah</h5>
             <p class="card-text">Frontend Developer & UI Designer.</p>
-            <a href="jesleen.php" class="btn btn-primary">Learn more</a>
+            <a href="jesleen.php" class="btn btn-success">View Jesleen's Role</a>
         </div>
     </div>
 </div>

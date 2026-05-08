@@ -12,7 +12,7 @@ include 'db.php';
             <div class="hero-content">
                 <h2>Welcome to Green Lawn Fargo</h2>
                 <p>Professional Lawn Care & Landscaping Services</p>
-                <a href="book_service.php" class="cta-button">Book a Service Today</a>
+                <a href="./book_service.php" class="cta-button">Book a Service Today</a>
             </div>
         </div>
     </section>
@@ -48,7 +48,7 @@ include 'db.php';
                 </div>
             </div>
             <div style="text-align: center; margin-top: 3rem;">
-                <a href="services.php" class="cta-button">View All Services</a>
+                <a href="./services.php" class="cta-button">View All Services</a>
             </div>
         </div>
     </section>
@@ -92,10 +92,10 @@ include 'db.php';
             <h2>Ready to Transform Your Lawn?</h2>
             <p>Get a free estimate or book your first service today!</p>
             <?php if (!isset($_SESSION['user_id'])): ?>
-                <a href="register.php" class="cta-button" style="margin-right: 1rem;">Sign Up Now</a>
-                <a href="login.php" class="cta-button" style="background-color: transparent; border: 2px solid var(--accent-color);">Login</a>
+                <a href="./register.php" class="cta-button" style="margin-right: 1rem;">Sign Up Now</a>
+                <a href="./login.php" class="cta-button" style="background-color: transparent; border: 2px solid var(--accent-color);">Login</a>
             <?php else: ?>
-                <a href="book_service.php" class="cta-button">Book Now</a>
+                <a href="./book_service.php" class="cta-button">Book Now</a>
             <?php endif; ?>
         </div>
     </section>

@@ -83,9 +83,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="row justify-content-center">
 
-    <div class="col-md-8 col-lg-6">
+    <div class="col-11 col-md-8 col-lg-6">
 
-        <div class="card shadow p-4">
+        <div class="card shadow p-3 p-md-4">
 
             <h2 class="text-success text-center mb-4">
                 Create Account

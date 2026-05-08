@@ -74,7 +74,7 @@ ORDER BY ServiceID DESC
 
 <?php } ?>
 
-<div class="card shadow p-4 mb-5">
+<div class="card shadow p-3 p-md-4 mb-5">
 
     <h4 class="mb-4">
         Add New Service
@@ -82,69 +82,74 @@ ORDER BY ServiceID DESC
 
     <form method="POST">
 
-        <div class="mb-3">
+        <div class="row g-3">
 
-            <label class="form-label">
-                Service Name
-            </label>
+            <div class="col-12 mb-3">
 
-            <input
-                type="text"
-                name="Name"
-                class="form-control"
-                required>
+                <label class="form-label">
+                    Service Name
+                </label>
 
+                <input
+                    type="text"
+                    name="Name"
+                    class="form-control"
+                    required>
+
+            </div>
+
+            <div class="col-12 mb-3">
+
+                <label class="form-label">
+                    Description
+                </label>
+
+                <textarea
+                    name="Description"
+                    class="form-control"
+                    rows="3"
+                    required></textarea>
+
+            </div>
+
+            <div class="col-12 col-sm-6 mb-3">
+
+                <label class="form-label">
+                    Base Price
+                </label>
+
+                <input
+                    type="number"
+                    step="0.01"
+                    name="BasePrice"
+                    class="form-control"
+                    required>
+
+            </div>
+
+            <div class="col-12 col-sm-6 mb-4">
+
+                <label class="form-label">
+                    Duration
+                </label>
+
+                <input
+                    type="text"
+                    name="BaseDuration"
+                    class="form-control"
+                    placeholder="Example: 2 Hours"
+                    required>
+
+            </div>
+
+            <div class="col-12">
+                <button
+                    class="btn btn-success"
+                    type="submit">
+                    Add Service
+                </button>
+            </div>
         </div>
-
-        <div class="mb-3">
-
-            <label class="form-label">
-                Description
-            </label>
-
-            <textarea
-                name="Description"
-                class="form-control"
-                rows="3"
-                required></textarea>
-
-        </div>
-
-        <div class="mb-3">
-
-            <label class="form-label">
-                Base Price
-            </label>
-
-            <input
-                type="number"
-                step="0.01"
-                name="BasePrice"
-                class="form-control"
-                required>
-
-        </div>
-
-        <div class="mb-4">
-
-            <label class="form-label">
-                Duration
-            </label>
-
-            <input
-                type="text"
-                name="BaseDuration"
-                class="form-control"
-                placeholder="Example: 2 Hours"
-                required>
-
-        </div>
-
-        <button
-            class="btn btn-success"
-            type="submit">
-            Add Service
-        </button>
 
     </form>
 
@@ -156,55 +161,50 @@ ORDER BY ServiceID DESC
         Current Services
     </h4>
 
-    <table class="table table-bordered table-striped">
-
-        <thead class="table-success">
-
-            <tr>
-
-                <th>ID</th>
-                <th>Service Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Duration</th>
-
-            </tr>
-
-        </thead>
-
-        <tbody>
-
-            <?php while ($row = $services->fetch_assoc()) { ?>
-
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="table-success">
                 <tr>
-
-                    <td>
-                        <?php echo $row["ServiceID"]; ?>
-                    </td>
-
-                    <td>
-                        <?php echo htmlspecialchars($row["Name"]); ?>
-                    </td>
-
-                    <td>
-                        <?php echo htmlspecialchars($row["Description"]); ?>
-                    </td>
-
-                    <td>
-                        $<?php echo number_format($row["BasePrice"], 2); ?>
-                    </td>
-
-                    <td>
-                        <?php echo htmlspecialchars($row["BaseDuration"]); ?>
-                    </td>
-
+                    <th>ID</th>
+                    <th>Service Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Duration</th>
                 </tr>
+            </thead>
+            <tbody>
 
-            <?php } ?>
+                <?php while ($row = $services->fetch_assoc()) { ?>
 
-        </tbody>
+                    <tr>
 
-    </table>
+                        <td>
+                            <?php echo $row["ServiceID"]; ?>
+                        </td>
+
+                        <td>
+                            <?php echo htmlspecialchars($row["Name"]); ?>
+                        </td>
+
+                        <td>
+                            <?php echo htmlspecialchars($row["Description"]); ?>
+                        </td>
+
+                        <td>
+                            $<?php echo number_format($row["BasePrice"], 2); ?>
+                        </td>
+
+                        <td>
+                            <?php echo htmlspecialchars($row["BaseDuration"]); ?>
+                        </td>
+
+                    </tr>
+
+                <?php } ?>
+
+            </tbody>
+        </table>
+    </div>
 
 </div>
 

@@ -45,8 +45,8 @@ include "header.php";
 ?>
 
 <div class="row justify-content-center">
-    <div class="col-md-6 col-lg-5">
-        <div class="card shadow p-4">
+    <div class="col-11 col-md-6 col-lg-5">
+        <div class="card shadow p-3 p-md-4">
             <h2 class="text-success text-center mb-4">Customer Login</h2>
 
             <?php if ($message != "") { ?>
