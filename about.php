@@ -20,7 +20,7 @@ include "header.php";
     </div>
 
     <div class="card" style="width: 18rem;">
-        <img src="./images/womanph.avif" class="card-img-top" alt="...">
+        <img src="./images/female.jpg" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">Jesleen Mulbah</h5>
             <p class="card-text">Frontend Developer & UI Designer.</p>
