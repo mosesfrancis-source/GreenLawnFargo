@@ -91,11 +91,13 @@ include 'db.php';
         <div class="container">
             <h2>Ready to Transform Your Lawn?</h2>
             <p>Get a free estimate or book your first service today!</p>
-            <?php if (!isset($_SESSION['user_id'])): ?>
+            <?php if (isset($_SESSION['CustomerID'])): ?>
+                <a href="./book_service.php" class="cta-button">Book Now</a>
+            <?php elseif (isset($_SESSION['AdminID'])): ?>
+                <a href="./admin_dashboard.php" class="cta-button">Admin Dashboard</a>
+            <?php else: ?>
                 <a href="./register.php" class="cta-button" style="margin-right: 1rem;">Sign Up Now</a>
                 <a href="./login.php" class="cta-button" style="background-color: transparent; border: 2px solid var(--accent-color);">Login</a>
-            <?php else: ?>
-                <a href="./book_service.php" class="cta-button">Book Now</a>
             <?php endif; ?>
         </div>
     </section>

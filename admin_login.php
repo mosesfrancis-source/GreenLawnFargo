@@ -23,8 +23,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows == 1) {
 
         $admin = $result->fetch_assoc();
+        $storedPassword = $admin["PasswordHash"];
+        $isValidPassword = false;
 
-        if (password_verify($password, $admin["PasswordHash"])) {
+        if (password_verify($password, $storedPassword)) {
+            $isValidPassword = true;
+        } elseif ($password === $storedPassword) {
+            // Backward compatibility for legacy plain-text admin passwords.
+            $isValidPassword = true;
+
+            $newHash = password_hash($password, PASSWORD_DEFAULT);
+            $updateStmt = $conn->prepare("UPDATE admins SET PasswordHash = ? WHERE AdminID = ?");
+            if ($updateStmt) {
+                $adminID = (int) $admin["AdminID"];
+                $updateStmt->bind_param("si", $newHash, $adminID);
+                $updateStmt->execute();
+                $updateStmt->close();
+            }
+        }
+
+        if ($isValidPassword) {
 
             $_SESSION["AdminID"] = $admin["AdminID"];
             $_SESSION["AdminUsername"] = $admin["Username"];

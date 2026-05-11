@@ -1,7 +1,6 @@
 <?php
 include "auth_check.php";
 include "db.php";
-include "header.php";
 
 $message = "";
 $customerID = $_SESSION["CustomerID"];
@@ -19,65 +18,76 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             WHERE ServiceID = ?";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $serviceID);
-    $stmt->execute();
+    if (!$stmt) {
+        $message = "Unable to load the selected service.";
+    } else {
+        $stmt->bind_param("i", $serviceID);
+        $stmt->execute();
 
-    $result = $stmt->get_result();
+        $result = $stmt->get_result();
 
-    if ($result->num_rows == 1) {
+        if ($result->num_rows == 1) {
 
-        $service = $result->fetch_assoc();
+            $service = $result->fetch_assoc();
 
-        $finalPrice = $service["BasePrice"];
+            $finalPrice = $service["BasePrice"];
 
-        $insertSql = "INSERT INTO bookings
-                      (CustomerID, RequestID, FinalPrice, RequestedDate, BookingTime, Status, ServiceProvider)
-                      VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $insertSql = "INSERT INTO bookings
+                          (CustomerID, RequestID, FinalPrice, RequestedDate, BookingTime, Status, ServiceProvider)
+                          VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-        $insertStmt = $conn->prepare($insertSql);
+            $insertStmt = $conn->prepare($insertSql);
 
-        $insertStmt->bind_param(
-            "iidssss",
-            $customerID,
-            $serviceID,
-            $finalPrice,
-            $requestedDate,
-            $bookingTime,
-            $status,
-            $serviceProvider
-        );
+            if (!$insertStmt) {
+                $message = "Unable to save your booking right now.";
+            } else {
+                $insertStmt->bind_param(
+                    "iidssss",
+                    $customerID,
+                    $serviceID,
+                    $finalPrice,
+                    $requestedDate,
+                    $bookingTime,
+                    $status,
+                    $serviceProvider
+                );
 
-        if ($insertStmt->execute()) {
+                if ($insertStmt->execute()) {
 
-            $bookingID = $insertStmt->insert_id;
+                    $bookingID = $insertStmt->insert_id;
 
-            $confirmMessage = "Your booking has been submitted successfully and is pending review.";
+                    $confirmMessage = "Your booking has been submitted successfully and is pending review.";
 
-            $confirmSql = "INSERT INTO confirmations
-                           (BookingID, Message, SentEmail)
-                           VALUES (?, ?, ?)";
+                    $confirmSql = "INSERT INTO confirmations
+                                   (BookingID, Message, SentEmail)
+                                   VALUES (?, ?, ?)";
 
-            $sentEmail = 0;
+                    $sentEmail = 0;
 
-            $confirmStmt = $conn->prepare($confirmSql);
-            $confirmStmt->bind_param("isi", $bookingID, $confirmMessage, $sentEmail);
-            $confirmStmt->execute();
-            $confirmStmt->close();
+                    $confirmStmt = $conn->prepare($confirmSql);
+                    if ($confirmStmt) {
+                        $confirmStmt->bind_param("isi", $bookingID, $confirmMessage, $sentEmail);
+                        $confirmStmt->execute();
+                        $confirmStmt->close();
+                    }
 
-            // Redirect to confirmation page
-            header("Location: confirmation.php?id=" . $bookingID);
-            exit();
+                    header("Location: confirmation.php?id=" . $bookingID);
+                    exit();
+                } else {
+                    $message = "Booking failed.";
+                }
+
+                $insertStmt->close();
+            }
         } else {
-            $message = "Booking failed.";
+            $message = "Invalid request selected.";
         }
 
-        $insertStmt->close();
-    } else {
-        $message = "Invalid request selected.";
+        $stmt->close();
     }
-
-    $stmt->close();
 }
+
+include "header.php";
 
 $sql = "SELECT ServiceID, Name, Description, BasePrice, BaseDuration
         FROM services
