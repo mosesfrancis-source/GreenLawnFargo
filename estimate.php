@@ -61,9 +61,13 @@ $result = $stmt->get_result();
                             <td>$<?php echo number_format($row["FinalEstimate"], 2); ?></td>
                             <td><?php echo htmlspecialchars($row["Status"]); ?></td>
                             <td>
-                                <a href="book_service.php" class="btn btn-success btn-sm">
-                                    Book
-                                </a>
+                                <?php if (strcasecmp($row["Status"], "Booked") !== 0) { ?>
+                                    <a href="book_service.php?request=<?php echo $row["RequestID"]; ?>" class="btn btn-success btn-sm">
+                                        Preview &amp; Book
+                                    </a>
+                                <?php } else { ?>
+                                    <span class="badge bg-secondary">Booked</span>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php } ?>
